@@ -41,7 +41,7 @@ fact noBoatsInitiallyInsideLock {
     no Lock.here
 }
 
-fact setup {
+pred setup {
     Lock.hasWall = NorthWall + SouthWall
     Lock.hasSensor = LockSensor
     Upstream.hasSensor = NorthSensor
@@ -121,6 +121,7 @@ pred skip {
 }
 
 fact trans {
+    setup
     always (skip or 
             some b : Boat | AttemptToActivateSouthSensor[b] or 
                             	        LowerSouthWall or 
